@@ -41,7 +41,9 @@ Candidates drafted, scored against the judge's five criteria, best kept:
      Concrete (the exact wrong code, named as the referral code, set
      against the play code) and the punch lands in the last four words:
      "asked me to double-check it" — double-checking a post that is
-     already public, by the agent that published it wrong. WINNER.
+     already public, by the agent that published it wrong. Strong, but
+     the lateness is only implied: the line never says the post was
+     already live, so candidate 7 beats it by stating the punch.
   3. "My agent posted my X promo with the referral code instead of the
      play code, then asked me if it looked good."
      Good punch, but it never names the code, so it reads like it could
@@ -61,17 +63,30 @@ Candidates drafted, scored against the judge's five criteria, best kept:
      "The wrong code" is vaguer than naming the referral code, and the
      line spends its last words restating the timeline instead of
      landing a punch.
+  7. "My agent posted my promo with the referral code rmxdpssa instead
+     of the play code, then asked me to double-check it after it was
+     already live."
+     Keeps candidate 2's exact build and adds the missing fact: the
+     post was already live. The punch now lands in the last five
+     words — "after it was already live" — so the double-check is
+     not just late, it is useless. WINNER.
+  8. "My agent posted my promo with the referral code rmxdpssa instead
+     of the play code, then asked me to double-check it — after it
+     went live."
+     Same facts as the winner, but the em-dash pause explains the
+     joke's timing instead of letting the sentence deliver it, and
+     the lateness reads as an afterthought rather than the punch.
 
 Why the winner works, criterion by criterion:
 
   * About the entrant's own agent, today (criterion 1): the first two
     words are "My agent", the act is today's real incident, and nothing
     in the line is about agents in general.
-  * Punch in the last few words (criterion 2): "then asked me to
-    double-check it". The agent published the post, got the code wrong,
-    and only then asked its owner to check it. The request for a
-    double-check arrives one post too late, and that lateness is the
-    joke.
+  * Punch in the last few words (criterion 2): "after it was already
+    live". The agent published the post, got the code wrong, and only
+    then asked its owner to double-check it — a check that can change
+    nothing, because the post is already public. The uselessness of
+    the double-check is the joke, and it lands at the very end.
   * Concrete, believable failure (criterion 3): the referral code
     rmxdpssa is named verbatim, set against "the play code" — a
     specific misreading of two similar-looking codes on the same
@@ -100,8 +115,11 @@ import sys
 
 # (text, concreteness, punch, realness, tightness)
 # concreteness: 3 = exact code named verbatim, 2 = code types named,
-#   1 = "wrong code" only. punch: 2 = approval/check requested after
-#   the mistake, 1 = "after it went live" beat, 0 = flat ending.
+#   1 = "wrong code" only. punch: 3 = check/approval requested after
+#   the mistake AND the post is stated as already live, so the lateness
+#   itself is the punch in the last few words; 2 = check/approval
+#   requested after the mistake with the lateness only implied;
+#   1 = "after it went live" beat, 0 = flat ending.
 # realness: 2 = literally today's incident with verbatim detail,
 #   1 = today's incident retold loosely. tightness: 1 = 200 chars or
 #   fewer with room to spare, 0 = over the limit (gate rejects it).
@@ -135,6 +153,18 @@ CANDIDATES = [
         "My agent finished my promo, posted it with the wrong code, and "
         "asked me to check it - after it was already live.",
         1, 1, 1, 1,
+    ),
+    (
+        "My agent posted my promo with the referral code rmxdpssa "
+        "instead of the play code, then asked me to double-check it "
+        "after it was already live.",
+        3, 3, 2, 1,
+    ),
+    (
+        "My agent posted my promo with the referral code rmxdpssa "
+        "instead of the play code, then asked me to double-check it "
+        "\u2014 after it went live.",
+        3, 2, 2, 1,
     ),
 ]
 
